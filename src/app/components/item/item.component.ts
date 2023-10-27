@@ -41,6 +41,5 @@ export class ItemComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy(){
     console.log('conseguiram');
-    
   }
 }

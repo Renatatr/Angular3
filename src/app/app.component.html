@@ -5,7 +5,7 @@
     <div class="lista">
       <div class="header-lista">
         <h4 class="title-list">Lista de Compras</h4>
-        <button class="btn-header" (click)="limparLista()">Limpara lista</button>
+        <button class="btn-header" (click)="limparLista()">Limpar lista</button>
       </div>
       <div *ngIf="listaDeCompra.length !== 0; else naoTemItem">
         <div *ngFor="let itemm of listaDeCompra">

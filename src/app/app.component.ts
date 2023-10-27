@@ -9,6 +9,7 @@ import { ListaDeCompraService } from './service/lista-de-compra.service';
 })
 export class AppComponent implements OnInit, DoCheck {
 
+
   title = 'app-lista-de-compras';
   listaDeCompra!: Array<Item>;
   itemParaSerEditado!: Item;
@@ -18,24 +19,35 @@ export class AppComponent implements OnInit, DoCheck {
     ) { }
 
   ngDoCheck(): void {
+    console.log('do check');
     this.listaSevice.atualizarLocalStorage();
   }
 
   ngOnInit(): void {
-    this.listaDeCompra = this.listaSevice.getListaDeCompra();
     console.log(this.listaDeCompra);
+    this.atualizarExibicaoDeLista();
+  //  this.limparLista();
+  }
+
+  atualizarExibicaoDeLista(){
+    this.listaDeCompra = this.listaSevice.getListaDeCompra();
   }
 
   editarItem(item: Item) {
     this.itemParaSerEditado = item;
+    this.atualizarExibicaoDeLista();
   }
 
   deletarItem(id: number){
     const index = this.listaDeCompra.findIndex((item) => item.id == id)
     this.listaDeCompra.splice(index,1);
+    this.atualizarExibicaoDeLista();
   }
 
   limparLista(){
+    console.log('a');
+    this.listaSevice.limparTodaLista();
     this.listaDeCompra = [];
+    this.atualizarExibicaoDeLista();
   }
 }
